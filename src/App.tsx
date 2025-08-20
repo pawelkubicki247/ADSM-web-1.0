@@ -8,6 +8,7 @@ import CaseStudy from './components/CaseStudy';
 import Contact from './components/Contact';
 import BookMeeting from './components/BookMeeting';
 import RemoteHelp from './components/RemoteHelp';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');
@@ -28,6 +29,8 @@ function App() {
         return <BookMeeting />;
       case 'remote-help':
         return <RemoteHelp />;
+      case 'privacy-policy':
+        return <PrivacyPolicy />;
       default:
         return <AboutUs />;
     }
@@ -38,7 +41,7 @@ function App() {
       <main className="pt-16 min-h-screen">
         {renderActiveSection()}
       </main>
-      <Footer />
+      <Footer setActiveSection={setActiveSection} />
     </div>
   );
 }

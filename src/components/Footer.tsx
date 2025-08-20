@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  setActiveSection: (section: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,12 +21,15 @@ const Footer: React.FC = () => {
             >
               rodo
             </a>
-            <a
-              href="#privacy"
+            <button
+              onClick={() => {
+                setActiveSection('privacy-policy');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
             >
               polityka prywatności
-            </a>
+            </button>
           </div>
         </div>
       </div>
