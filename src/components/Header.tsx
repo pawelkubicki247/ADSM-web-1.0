@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
           {/* Logo */}
           <div className="flex items-center">
             <Monitor className="h-8 w-8 text-blue-600 mr-2" />
-            <span className="text-2xl font-bold text-gray-900">ADSM</span>
+            <span className="text-2xl font-bold text-gray-900">ADSM - system integrator</span>
           </div>
 
           {/* Desktop Navigation */}
