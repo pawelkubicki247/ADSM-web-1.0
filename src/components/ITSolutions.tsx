@@ -27,11 +27,13 @@ import {
   Server,
   HardDrive,
   Monitor,
-  ChevronRight
+  ChevronRight,
+  Calendar
 } from 'lucide-react';
 
 const ITSolutions: React.FC = () => {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null);
+  const [selectedSubSolution, setSelectedSubSolution] = useState<string | null>(null);
 
   const streamsoftModules = [
     { name: 'Zarządzanie Produkcją', icon: Package },
@@ -197,6 +199,10 @@ const ITSolutions: React.FC = () => {
             <button
               onClick={() => setSelectedSolution(null)}
               className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+              onClick={() => {
+                setSelectedSolution(null);
+                setSelectedSubSolution(null);
+              }}
             >
               <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
               Powrót do rozwiązań
@@ -249,52 +255,268 @@ const ITSolutions: React.FC = () => {
                   <h3 className="text-2xl font-bold text-gray-900">Oprogramowanie dedykowane</h3>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Zarządzanie wagonami */}
-                  <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
-                    <div className="flex items-center mb-4">
-                      <Train className="h-6 w-6 text-blue-600 mr-2" />
-                      <h4 className="text-xl font-semibold text-gray-900">Zarządzanie wagonami</h4>
-                    </div>
-                    <p className="text-gray-700 mb-6">
-                      Monitoring wagonów, identyfikacja postojów narzędzia do zgłaszania wagonów do odpraw celnych, monitorowanie kosztów transportu i postojów wagonów.
-                    </p>
-                    
-                    <div className="grid gap-4">
-                      {wagonScreens.map((screen, index) => (
-                        <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow duration-300">
-                          <div className={`${screen.color} h-24 rounded-lg mb-3 flex items-center justify-center`}>
-                            <Monitor className="h-8 w-8 text-gray-600" />
-                          </div>
-                          <h5 className="font-medium text-gray-900 mb-1">{screen.title}</h5>
-                          <p className="text-sm text-gray-600">{screen.description}</p>
+                {!selectedSubSolution ? (
+                  /* Sub-solution tiles */
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div
+                      onClick={() => setSelectedSubSolution('wagons')}
+                      className="bg-green-50 hover:bg-green-100 border-2 border-green-200 rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 group"
+                    >
+                      <div className="text-center">
+                        <div className="flex justify-center mb-6">
+                          <Train className="h-16 w-16 text-green-600 group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                      ))}
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Zarządzanie wagonami</h4>
+                        <p className="text-gray-700 mb-6">
+                          Monitoring wagonów, identyfikacja postojów, narzędzia do zgłaszania wagonów do odpraw celnych, monitorowanie kosztów transportu i postojów wagonów.
+                        </p>
+                        <div className="flex items-center justify-center text-green-600 font-semibold">
+                          <span>Zobacz szczegóły</span>
+                          <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Strefa klienta */}
-                  <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
-                    <div className="flex items-center mb-4">
-                      <Users className="h-6 w-6 text-blue-600 mr-2" />
-                      <h4 className="text-xl font-semibold text-gray-900">Strefa klienta</h4>
-                    </div>
-                    <p className="text-gray-700 mb-6">
-                      Zastosowania terminale przeładunkowe gazu LPG, materiałów płynnych i sypkich, nawozy, itp.
-                    </p>
-                    
-                    <div className="grid gap-4">
-                      {clientZoneScreens.map((screen, index) => (
-                        <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow duration-300">
-                          <div className={`${screen.color} h-24 rounded-lg mb-3 flex items-center justify-center`}>
-                            <Monitor className="h-8 w-8 text-gray-600" />
-                          </div>
-                          <h5 className="font-medium text-gray-900 mb-1">{screen.title}</h5>
-                          <p className="text-sm text-gray-600">{screen.description}</p>
+                    <div
+                      onClick={() => setSelectedSubSolution('client-zone')}
+                      className="bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 group"
+                    >
+                      <div className="text-center">
+                        <div className="flex justify-center mb-6">
+                          <Users className="h-16 w-16 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                      ))}
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Strefa klienta</h4>
+                        <p className="text-gray-700 mb-6">
+                          Zastosowania terminale przeładunkowe gazu LPG, materiałów płynnych i sypkich, nawozy, itp.
+                        </p>
+                        <div className="flex items-center justify-center text-blue-600 font-semibold">
+                          <span>Zobacz szczegóły</span>
+                          <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
                   </div>
+                ) : (
+                  /* Selected sub-solution content */
+                  <div className="space-y-8">
+                    {/* Back button */}
+                    <button
+                      onClick={() => setSelectedSubSolution(null)}
+                      className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                    >
+                      <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
+                      Powrót do oprogramowania dedykowanego
+                    </button>
+
+                    {selectedSubSolution === 'wagons' && (
+                      <div>
+                        <div className="flex items-center mb-8">
+                          <Train className="h-8 w-8 text-green-600 mr-3" />
+                          <h4 className="text-2xl font-bold text-gray-900">Zarządzanie wagonami</h4>
+                        </div>
+                        
+                        <div className="space-y-12">
+                          {/* Example 1 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-blue-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Monitor className="h-16 w-16 text-blue-600 mx-auto mb-4" />
+                                <p className="text-blue-800 font-semibold">Dashboard monitoringu wagonów</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Przegląd statusu floty</h5>
+                              <p className="text-gray-700 mb-4">
+                                Centralny dashboard umożliwia monitorowanie wszystkich wagonów w czasie rzeczywistym. 
+                                System wyświetla aktualną lokalizację, status każdego wagonu oraz informacje o przewożonych materiałach.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Mapa z lokalizacją wszystkich wagonów</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Status każdego wagonu (w transporcie, postój, załadunek)</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Alerty o przekroczeniu czasu postojów</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 2 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-green-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <BarChart3 className="h-16 w-16 text-green-600 mx-auto mb-4" />
+                                <p className="text-green-800 font-semibold">Analiza kosztów transportu</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Kontrola kosztów i rentowności</h5>
+                              <p className="text-gray-700 mb-4">
+                                Szczegółowa analiza kosztów transportu pozwala na optymalizację tras i minimalizację 
+                                kosztów postojów. System automatycznie kalkuluje koszty na podstawie czasu i dystansu.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Automatyczne naliczanie kosztów postojów</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Raporty rentowności tras</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Porównanie kosztów różnych przewoźników</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 3 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-purple-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <FileText className="h-16 w-16 text-purple-600 mx-auto mb-4" />
+                                <p className="text-purple-800 font-semibold">Zarządzanie dokumentacją</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Automatyzacja procesów celnych</h5>
+                              <p className="text-gray-700 mb-4">
+                                System wspiera proces zgłaszania wagonów do odpraw celnych, automatyzując 
+                                generowanie dokumentów i śledzenie statusu procedur celnych.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Automatyczne generowanie dokumentów celnych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Śledzenie statusu odpraw celnych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-green-500 mr-2">•</span>
+                                  <span>Integracja z systemami celnymi</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedSubSolution === 'client-zone' && (
+                      <div>
+                        <div className="flex items-center mb-8">
+                          <Users className="h-8 w-8 text-blue-600 mr-3" />
+                          <h4 className="text-2xl font-bold text-gray-900">Strefa klienta</h4>
+                        </div>
+                        
+                        <div className="space-y-12">
+                          {/* Example 1 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-orange-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Settings className="h-16 w-16 text-orange-600 mx-auto mb-4" />
+                                <p className="text-orange-800 font-semibold">Panel kontrolny terminala</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Zarządzanie procesami przeładunkowymi</h5>
+                              <p className="text-gray-700 mb-4">
+                                Centralny panel kontrolny umożliwia zarządzanie wszystkimi procesami przeładunkowymi 
+                                w terminalu. System kontroluje przepływ materiałów i optymalizuje wykorzystanie zasobów.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Kontrola procesów załadunku i rozładunku</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Monitorowanie wykorzystania stanowisk</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Automatyczne planowanie kolejności operacji</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 2 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-teal-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Database className="h-16 w-16 text-teal-600 mx-auto mb-4" />
+                                <p className="text-teal-800 font-semibold">Monitoring zbiorników</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Kontrola poziomu i jakości materiałów</h5>
+                              <p className="text-gray-700 mb-4">
+                                System monitoruje w czasie rzeczywistym poziom materiałów w zbiornikach oraz 
+                                kontroluje parametry jakościowe. Automatyczne alerty informują o przekroczeniu limitów.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Ciągły monitoring poziomu w zbiornikach</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Kontrola parametrów jakościowych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Alerty o przekroczeniu limitów bezpieczeństwa</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 3 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-indigo-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Calendar className="h-16 w-16 text-indigo-600 mx-auto mb-4" />
+                                <p className="text-indigo-800 font-semibold">Harmonogram operacji</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Planowanie i optymalizacja przeładunków</h5>
+                              <p className="text-gray-700 mb-4">
+                                Zaawansowany system planowania optymalizuje harmonogram przeładunków, 
+                                minimalizując czas oczekiwania i maksymalizując przepustowość terminala.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Automatyczne planowanie kolejności przeładunków</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Optymalizacja wykorzystania zasobów</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-blue-500 mr-2">•</span>
+                                  <span>Prognozowanie czasów operacji</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
                 </div>
               </div>
             )}
