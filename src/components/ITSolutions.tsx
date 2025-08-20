@@ -527,76 +527,270 @@ const ITSolutions: React.FC = () => {
                   <h3 className="text-2xl font-bold text-gray-900">Rozwiązania chmurowe</h3>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Bazy danych na VM */}
-                  <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
-                    <div className="flex items-center mb-4">
-                      <Server className="h-6 w-6 text-blue-600 mr-2" />
-                      <h4 className="text-xl font-semibold text-gray-900">Bazy danych na VM</h4>
-                    </div>
-                    <p className="text-gray-700 mb-6">
-                      Oferujemy wsparcie w procesie projektowania i wdrożenia platformy witalizacyjnej. Jeśli stoisz w obliczu zwiększonych kosztów operacyjnych i niewydajnego wykorzystania zasobów IT musisz rozważyć wdrożenie technologii wirtualizacyjnej. Rozwiązanie wirtualizacji zwiększa elastyczność centrów danych, pozwala zaspokoić potrzeby związane z ceną / wydajnością, a także ułatwia wdrażanie, zarządzanie i obsługę aplikacji.
-                    </p>
-                    
-                    <div className="grid gap-4">
-                      {vmScreens.map((screen, index) => (
-                        <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow duration-300">
-                          <div className={`${screen.color} h-24 rounded-lg mb-3 flex items-center justify-center`}>
-                            <Monitor className="h-8 w-8 text-gray-600" />
-                          </div>
-                          <h5 className="font-medium text-gray-900 mb-1">{screen.title}</h5>
-                          <p className="text-sm text-gray-600">{screen.description}</p>
+                {!selectedSubSolution ? (
+                  /* Sub-solution tiles */
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div
+                      onClick={() => setSelectedSubSolution('vm-databases')}
+                      className="bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 group"
+                    >
+                      <div className="text-center">
+                        <div className="flex justify-center mb-6">
+                          <Server className="h-16 w-16 text-purple-600 group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Backup w chmurze */}
-                  <div className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
-                    <div className="flex items-center mb-4">
-                      <HardDrive className="h-6 w-6 text-blue-600 mr-2" />
-                      <h4 className="text-xl font-semibold text-gray-900">Backup w chmurze dla firm</h4>
-                    </div>
-                    <div className="text-gray-700 mb-6 space-y-4">
-                      <p className="font-semibold">Zabezpiecz swoje dane – chroń przyszłość firmy</p>
-                      <p>
-                        Dziś bezpieczeństwo danych to fundament każdej działalności. Kradzież laptopa czy awaria dysku to drobnostki w porównaniu z konsekwencjami ataku ransomware. Firma, która traci dostęp do umów, faktur czy baz klientów, w jednej chwili traci też możliwość dalszego działania.
-                      </p>
-                      <p>
-                        Cyberprzestępcy liczą na to, że zapłacisz okup – bez gwarancji odzyskania danych. Ty możesz być o krok przed nimi.
-                      </p>
-                      <p className="font-medium">👉 Rozwiązanie? Regularny backup danych.</p>
-                      <p>
-                        Kopia zapasowa pozwala w kilka chwil przywrócić dostęp do systemu i zapewnia ciągłość biznesu, nawet jeśli hakerzy spróbują sparaliżować Twoją firmę.
-                      </p>
-                      <div>
-                        <p className="font-medium mb-2">Backup w chmurze to dziś najskuteczniejsza i najbardziej opłacalna forma ochrony:</p>
-                        <ul className="list-disc list-inside text-sm space-y-1">
-                          <li>zawsze dostępny – bez względu na to, gdzie jesteś,</li>
-                          <li>bezpieczny – chroniony przed cyberatakami i awariami sprzętu,</li>
-                          <li>elastyczny – dopasowany do potrzeb Twojej firmy,</li>
-                          <li>opłacalny – znacznie tańszy i skuteczniejszy niż tradycyjne nośniki.</li>
-                        </ul>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Bazy danych na VM</h4>
+                        <p className="text-gray-700 mb-6">
+                          Oferujemy wsparcie w procesie projektowania i wdrożenia platformy wirtualizacyjnej. 
+                          Rozwiązanie wirtualizacji zwiększa elastyczność centrów danych i ułatwia zarządzanie aplikacjami.
+                        </p>
+                        <div className="flex items-center justify-center text-purple-600 font-semibold">
+                          <span>Zobacz szczegóły</span>
+                          <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
                       </div>
-                      <p className="font-semibold">
-                        Nie ryzykuj przerwania działalności.<br />
-                        Postaw na bezpieczeństwo i spokojny sen – z backupem w chmurze Twoje dane są zawsze pod kontrolą.
-                      </p>
                     </div>
-                    
-                    <div className="grid gap-4">
-                      {backupScreens.map((screen, index) => (
-                        <div key={index} className="border rounded-lg p-4 hover:shadow-sm transition-shadow duration-300">
-                          <div className={`${screen.color} h-24 rounded-lg mb-3 flex items-center justify-center`}>
-                            <Monitor className="h-8 w-8 text-gray-600" />
-                          </div>
-                          <h5 className="font-medium text-gray-900 mb-1">{screen.title}</h5>
-                          <p className="text-sm text-gray-600">{screen.description}</p>
+
+                    <div
+                      onClick={() => setSelectedSubSolution('cloud-backup')}
+                      className="bg-cyan-50 hover:bg-cyan-100 border-2 border-cyan-200 rounded-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 group"
+                    >
+                      <div className="text-center">
+                        <div className="flex justify-center mb-6">
+                          <HardDrive className="h-16 w-16 text-cyan-600 group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                      ))}
+                        <h4 className="text-2xl font-bold text-gray-900 mb-4">Backup w chmurze dla firm</h4>
+                        <p className="text-gray-700 mb-6">
+                          Zabezpiecz swoje dane – chroń przyszłość firmy. Backup w chmurze to najskuteczniejsza 
+                          i najbardziej opłacalna forma ochrony przed utratą danych.
+                        </p>
+                        <div className="flex items-center justify-center text-cyan-600 font-semibold">
+                          <span>Zobacz szczegóły</span>
+                          <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  /* Selected sub-solution content */
+                  <div className="space-y-8">
+                    {/* Back button */}
+                    <button
+                      onClick={() => setSelectedSubSolution(null)}
+                      className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                    >
+                      <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
+                      Powrót do rozwiązań chmurowych
+                    </button>
+
+                    {selectedSubSolution === 'vm-databases' && (
+                      <div>
+                        <div className="flex items-center mb-8">
+                          <Server className="h-8 w-8 text-purple-600 mr-3" />
+                          <h4 className="text-2xl font-bold text-gray-900">Bazy danych na VM</h4>
+                        </div>
+                        
+                        <div className="space-y-12">
+                          {/* Example 1 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-red-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Monitor className="h-16 w-16 text-red-600 mx-auto mb-4" />
+                                <p className="text-red-800 font-semibold">Dashboard VM</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Zarządzanie maszynami wirtualnymi</h5>
+                              <p className="text-gray-700 mb-4">
+                                Centralny panel zarządzania wszystkimi maszynami wirtualnymi w infrastrukturze. 
+                                System umożliwia monitorowanie stanu, wydajności i zasobów każdej maszyny wirtualnej.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Przegląd wszystkich maszyn wirtualnych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Kontrola stanu i wydajności VM</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Zarządzanie zasobami i konfiguracją</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 2 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-yellow-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <BarChart3 className="h-16 w-16 text-yellow-600 mx-auto mb-4" />
+                                <p className="text-yellow-800 font-semibold">Monitoring zasobów</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Wykorzystanie CPU, RAM i dysku</h5>
+                              <p className="text-gray-700 mb-4">
+                                Szczegółowe monitorowanie wykorzystania zasobów systemowych w czasie rzeczywistym. 
+                                System automatycznie ostrzega o przekroczeniu limitów i optymalizuje alokację zasobów.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Monitoring CPU, RAM i przestrzeni dyskowej</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Alerty o przekroczeniu limitów zasobów</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Automatyczna optymalizacja wydajności</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 3 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-pink-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Shield className="h-16 w-16 text-pink-600 mx-auto mb-4" />
+                                <p className="text-pink-800 font-semibold">Panel backup</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Automatyczne kopie zapasowe VM</h5>
+                              <p className="text-gray-700 mb-4">
+                                Zaawansowany system tworzenia kopii zapasowych maszyn wirtualnych z możliwością 
+                                harmonogramowania, wersjonowania i szybkiego przywracania danych.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Automatyczne harmonogramowanie backup</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Wersjonowanie i archiwizacja kopii</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-purple-500 mr-2">•</span>
+                                  <span>Szybkie przywracanie całych VM</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedSubSolution === 'cloud-backup' && (
+                      <div>
+                        <div className="flex items-center mb-8">
+                          <HardDrive className="h-8 w-8 text-cyan-600 mr-3" />
+                          <h4 className="text-2xl font-bold text-gray-900">Backup w chmurze dla firm</h4>
+                        </div>
+                        
+                        <div className="space-y-12">
+                          {/* Example 1 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-cyan-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Monitor className="h-16 w-16 text-cyan-600 mx-auto mb-4" />
+                                <p className="text-cyan-800 font-semibold">Dashboard backup</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Status i harmonogram kopii zapasowych</h5>
+                              <p className="text-gray-700 mb-4">
+                                Centralny panel kontrolny umożliwia zarządzanie wszystkimi kopiami zapasowymi firmy. 
+                                System wyświetla status wykonanych backup, harmonogram oraz statystyki wykorzystania przestrzeni.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Przegląd wszystkich kopii zapasowych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Harmonogram automatycznych backup</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Statystyki wykorzystania przestrzeni</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 2 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-emerald-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Database className="h-16 w-16 text-emerald-600 mx-auto mb-4" />
+                                <p className="text-emerald-800 font-semibold">Przywracanie danych</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Szybkie odzyskiwanie plików</h5>
+                              <p className="text-gray-700 mb-4">
+                                Intuicyjny interfejs umożliwia szybkie wyszukiwanie i przywracanie pojedynczych plików 
+                                lub całych folderów z kopii zapasowych. System wspiera przywracanie do różnych lokalizacji.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Wyszukiwanie plików w kopiach zapasowych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Przywracanie do oryginalnej lub nowej lokalizacji</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Podgląd zawartości przed przywróceniem</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Example 3 */}
+                          <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="bg-violet-100 rounded-lg p-8 h-64 flex items-center justify-center">
+                              <div className="text-center">
+                                <Shield className="h-16 w-16 text-violet-600 mx-auto mb-4" />
+                                <p className="text-violet-800 font-semibold">Ustawienia bezpieczeństwa</p>
+                              </div>
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Konfiguracja szyfrowania i dostępu</h5>
+                              <p className="text-gray-700 mb-4">
+                                Zaawansowane opcje bezpieczeństwa zapewniają pełną ochronę danych w chmurze. 
+                                System oferuje szyfrowanie end-to-end oraz szczegółowe zarządzanie uprawnieniami dostępu.
+                              </p>
+                              <ul className="space-y-2 text-gray-600">
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Szyfrowanie AES-256 dla wszystkich danych</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Zarządzanie uprawnieniami użytkowników</span>
+                                </li>
+                                <li className="flex items-start">
+                                  <span className="text-cyan-500 mr-2">•</span>
+                                  <span>Logi dostępu i audyt bezpieczeństwa</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
