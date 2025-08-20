@@ -3,6 +3,7 @@ import { Award, Target, Users, ArrowLeft } from 'lucide-react';
 
 const AboutUs: React.FC = () => {
   const [showPrince2Details, setShowPrince2Details] = React.useState(false);
+  const [showAgileDetails, setShowAgileDetails] = React.useState(false);
 
   const methodologies = [
     {
@@ -16,8 +17,8 @@ const AboutUs: React.FC = () => {
       name: 'AGILE',
       icon: Target,
       description: 'Elastyczne podejście do rozwoju / Flexible development approach',
-      link: 'https://agilemanifesto.org/',
-      onClick: null
+      link: '#',
+      onClick: () => setShowAgileDetails(true)
     },
     {
       name: 'SCRUM',
@@ -27,6 +28,243 @@ const AboutUs: React.FC = () => {
       onClick: null
     }
   ];
+
+  if (showAgileDetails) {
+    return (
+      <section id="about" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={() => setShowAgileDetails(false)}
+            className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 mb-8"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            Powrót do sekcji O nas
+          </button>
+
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Agile — w pigułce (po polsku)
+            </h2>
+            
+            <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+              <div className="bg-blue-50 rounded-lg p-6 my-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Manifest Agile — o co chodzi?</h3>
+                <p>
+                  Manifest programowania zwinnego (Agile Manifesto) to krótka deklaracja wartości i zasad, która w 2001 r. 
+                  w Snowbird (Utah) zapoczątkowała zwrot w myśleniu o tworzeniu oprogramowania. Na jego fundamencie powstały 
+                  i rozwinęły się metodyki zwinne (m.in. Scrum, Kanban, XP).
+                </p>
+              </div>
+
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">4 wartości Agile</h3>
+              <div className="space-y-4">
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <p><strong>Ludzie i interakcje</strong> ponad procesy i narzędzia.</p>
+                </div>
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <p><strong>Działające oprogramowanie</strong> ponad wyczerpującą dokumentację.</p>
+                </div>
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <p><strong>Współpraca z klientem</strong> ponad negocjacje umów.</p>
+                </div>
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <p><strong>Reagowanie na zmiany</strong> ponad realizację planu.</p>
+                </div>
+              </div>
+              <p className="italic text-gray-600 bg-gray-50 p-4 rounded-lg">
+                W praktyce: elementy po prawej też są ważne, lecz Agile mocniej akcentuje to, co po lewej — 
+                bo to szybciej dostarcza wartość.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">12 zasad Agile (w praktyce)</h3>
+              <ol className="space-y-3">
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">1</span>
+                  <div>Zadowolenie klienta dzięki wczesnemu i częstemu dostarczaniu wartości.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">2</span>
+                  <div>Akceptacja zmian wymagań — nawet późno w projekcie — dla przewagi konkurencyjnej.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">3</span>
+                  <div>Częste wydania działającego oprogramowania (od kilku tygodni do kilku miesięcy).</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">4</span>
+                  <div>Ścisła współpraca biznesu i zespołu w całym cyklu życia projektu.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">5</span>
+                  <div>Budowanie projektów wokół zmotywowanych ludzi: właściwe środowisko, wsparcie i zaufanie.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">6</span>
+                  <div>Najefektywniejsza komunikacja to rozmowa bezpośrednia (face‑to‑face).</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">7</span>
+                  <div>Działające oprogramowanie jest podstawową miarą postępu.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">8</span>
+                  <div>Zrównoważone tempo pracy (sponsorzy, użytkownicy i zespół utrzymują równy rytm).</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">9</span>
+                  <div>Ciągłe dążenie do doskonałości technicznej i dobrego projektowania zwiększa zwinność.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">10</span>
+                  <div>Prostota — sztuka minimalizowania niezbędnej pracy.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">11</span>
+                  <div>Zespoły samoorganizujące się wybierają sposób pracy i narzędzia adekwatne do celu.</div>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-1">12</span>
+                  <div>Regularna inspekcja i adaptacja (przeglądy i retrospektywy) zwiększa efektywność.</div>
+                </li>
+              </ol>
+
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Jak zbudować harmonogram Agile (6 kroków)</h3>
+              
+              <div className="space-y-6">
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">1) Określenie wizji produktu</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Zdefiniuj cel, grupę docelową, wartość i kluczowe funkcje.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Ustal, czy używasz roadmapy (horyzont, kamienie milowe) czy planu sprintów (krótkie iteracje).</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">2) Backlog produktu</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Zbieraj wymagania z klientami, użytkownikami i zespołem.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Twórz historyjki użytkownika i nadaj im priorytety.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Szacuj wysiłek (np. story points) i złożoność.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Systematycznie porządkuj (refinement): dodawaj, dziel, usuwaj, aktualizuj priorytety.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Dbaj o przejrzystość backlogu dla wszystkich interesariuszy.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">3) Dzielenie na sprinty</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Ustal kolejność elementów i możliwości zespołu (capacity).</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Wybierz zakres sprintu i określ cel sprintu.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Prowadź codzienne synchronizacje i adaptuj plan do zmian.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Po sprincie: przegląd przyrostu i retrospektywa procesu.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">4) Cele i kamienie milowe</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Dają punkty odniesienia i koncentrację na najważniejszych efektach.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Wzmacniają motywację i odpowiedzialność całego zespołu.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Ułatwiają adaptację do zmian i komunikację z interesariuszami.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">5) Wspólne planowanie</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Zapewnij udział interdyscyplinarnych zespołów i interesariuszy.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Prowadź iteracyjne dyskusje; rozbijaj złożone zadania na mniejsze.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Wizualizuj postęp: tablice Kanban, roadmapy, wykresy zależności.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Decyzje podejmuj wspólnie, by wzmacniać zaangażowanie i odpowiedzialność.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">6) Ciągłe doskonalenie</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Zbieraj feedback od użytkowników, interesariuszy i zespołu.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Wprowadzaj przyrostowe korekty i ucz się na bieżąco.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>Buduj kulturę inspekcji i adaptacji (empiryzm).</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 rounded-lg p-6 mt-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Podsumowanie</h3>
+                <p>
+                  Agile to praktyka dostarczania wartości małymi krokami, z bliską współpracą z klientem i gotowością na zmiany. 
+                  Harmonogram jest żywy, wspiera przejrzystość i decyzje oparte na danych, a miarą postępu jest działające oprogramowanie.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (showPrince2Details) {
     return (
