@@ -8,14 +8,14 @@ const AboutUs: React.FC = () => {
     {
       name: 'PRINCE2',
       icon: Award,
-      description: 'Structured project management methodology',
+      description: 'Standaryzowane metoda zarzadzania projektami',
       link: '#',
       onClick: () => setShowPrince2Details(true)
     },
     {
       name: 'AGILE',
       icon: Target,
-      description: 'Flexible development approach',
+      description: 'Elastyczne podejście do rozwoju / Flexible development approach',
       link: 'https://agilemanifesto.org/',
       onClick: null
     },
