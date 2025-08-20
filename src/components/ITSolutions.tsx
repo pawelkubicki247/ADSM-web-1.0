@@ -518,7 +518,6 @@ const ITSolutions: React.FC = () => {
                   </div>
                 )}
                 </div>
-              </div>
             )}
 
             {selectedSolution === 'cloud' && (
