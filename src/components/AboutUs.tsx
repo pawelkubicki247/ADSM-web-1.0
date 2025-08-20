@@ -22,7 +22,7 @@ const AboutUs: React.FC = () => {
     {
       name: 'SCRUM',
       icon: Users,
-      description: 'Framework for complex product development',
+      description: 'Metoda zarządzania projektami IT oparta na zasadach Agile / Framework for complex product development',
       link: 'https://scrumguides.org/',
       onClick: null
     }
