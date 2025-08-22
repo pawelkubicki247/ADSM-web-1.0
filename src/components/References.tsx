@@ -4,7 +4,7 @@ import { Star, Building2, CheckCircle } from 'lucide-react';
 const References: React.FC = () => {
   const references = [
     {
-      company: 'ABC Manufacturing Sp. z o.o.',
+      company: 'ABCD Manufacturing Sp. z o.o.',
       industry: 'Produkcja',
       project: 'Wdrożenie systemu ERP Streamsoft',
       rating: 5,
