@@ -7,7 +7,7 @@ const AboutUs: React.FC = () => {
 
   const methodologies = [
     {
-      name: 'PRINCE2',
+      name: 'PRINCE2-nieaktualne',
       icon: Award,
       description: 'Standaryzowane metoda zarzadzania projektami',
       link: '#',
