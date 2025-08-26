@@ -61,8 +61,7 @@ const ITSolutions: React.FC = () => {
     { name: 'Kurier', icon: Mail },
     { name: 'Windykator', icon: DollarSign },
     { name: 'Serwis', icon: Shield }
-  ];
-
+      ]; 
   const wagonScreens = [
     {
       title: 'Dashboard monitoringu',
