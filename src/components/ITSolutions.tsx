@@ -34,6 +34,7 @@ import {
 const ITSolutions: React.FC = () => {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null);
   const [selectedSubSolution, setSelectedSubSolution] = useState<string | null>(null);
+  const [showFixedAssetsDetails, setShowFixedAssetsDetails] = useState(false);
 
   const streamsoftModules = [
     { name: 'Zarządzanie Produkcją', icon: Package },
@@ -44,7 +45,7 @@ const ITSolutions: React.FC = () => {
     { name: 'Logistyka', icon: Truck },
     { name: 'DMS', icon: Database },
     { name: 'Rozrachunki', icon: DollarSign },
-    { name: 'Środki Trwałe', icon: Building },
+    { name: 'Środki Trwałe', icon: Building, id: 'fixed-assets' },
     { name: 'Wyposażenie', icon: Box },
     { name: 'Serwis', icon: Wrench },
     { name: 'Raporty i Formularze', icon: FileText },
@@ -234,6 +235,11 @@ const ITSolutions: React.FC = () => {
                   {streamsoftModules.map((module, index) => (
                     <div
                       key={index}
+                      onClick={() => {
+                        if (module.id === 'fixed-assets') {
+                          setShowFixedAssetsDetails(true);
+                        }
+                      }}
                       className="bg-gray-50 p-4 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all duration-300 cursor-pointer group"
                     >
                       <div className="flex flex-col items-center text-center">
@@ -245,6 +251,104 @@ const ITSolutions: React.FC = () => {
                     </div>
                   ))}
                 </div>
+
+                {showFixedAssetsDetails && (
+                  <div className="mt-8 bg-gray-50 rounded-lg p-8">
+                    <button
+                      onClick={() => {
+                        setShowFixedAssetsDetails(false);
+                        setSelectedSubSolution(null);
+                      }}
+                      className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 mb-8"
+                    >
+                      <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
+                      Powrót do modułów Streamsoft
+                    </button>
+
+                    <div className="flex items-center mb-8">
+                      <Building className="h-8 w-8 text-blue-600 mr-3" />
+                      <h4 className="text-2xl font-bold text-gray-900">Moduł Środki Trwałe</h4>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                      {/* Image Column */}
+                      <div className="flex justify-center">
+                        <img
+                          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                          alt="Środki Trwałe - zarządzanie majątkiem firmy"
+                          className="rounded-lg shadow-lg max-w-full h-auto"
+                        />
+                      </div>
+
+                      {/* Description Column */}
+                      <div className="space-y-6">
+                        <div>
+                          <p className="text-gray-700 leading-relaxed">
+                            Moduł Środki Trwałe Streamsoft Prestiż zapewnia pełną kontrolę nad majątkiem trwałym, 
+                            wartościami niematerialnymi, jak i prawnymi. Oferuje szereg możliwości w zakresie 
+                            zarządzania środkami trwałymi i ich amortyzacji. Można także skorzystać z szerokiego 
+                            katalogu wydruków oraz zestawień dostępnych w module, a gdyby zaszła taka potrzeba - 
+                            definiować własne, zgodnie z bieżącymi potrzebami. Moduł posiada również mechanizm cech, 
+                            czyli opcję pomocną przy wprowadzaniu własnych parametrów środków trwałych.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Ewidencja środków trwałych</h5>
+                          <p className="text-gray-700 leading-relaxed">
+                            Moduł wspiera procesy ewidencjonowania środków trwałych. Możliwa jest ewidencja na podstawie 
+                            szerokiego katalogu dokumentów: przyjęcia, likwidacji, ulepszenia, zmiany wprowadzonej przez 
+                            użytkownika czy przeszacowania. Sprzyja to budowaniu pełnej historii majątku i pozwala 
+                            użytkownikom modułu prześledzić kompletną ścieżkę danego środka trwałego, od chwili jego 
+                            przyjęcia w firmie. Wgląd w aktualne dane jest intuicyjny, historię majątku trwałego można 
+                            wywołać na kliknięcie – szybko i sprawnie.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Kastomizacja parametrów</h5>
+                          <p className="text-gray-700 leading-relaxed">
+                            Moduł umożliwia szybkie filtrowanie oraz tworzenie autorskich parametrów dla różnych kategorii 
+                            środków trwałych, np. przegląd sprzętu komputerowego, numer atestu urządzeń czy data przeglądu 
+                            floty samochodowej. Moduł jest pod tym względem uniwersalny i posiada szeroki zakres funkcji. 
+                            Dlatego zaspokaja potrzeby kadry zarządzającej, która oczekuje dostępu do różnorodnych 
+                            informacji o posiadanym majątku trwałym.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Inwentaryzacja</h5>
+                          <p className="text-gray-700 leading-relaxed">
+                            W module Środki Trwałe inwentaryzację można przeprowadzić zgodnie z wyodrębnionymi w firmie 
+                            polami spisowymi, szybko i sprawnie generując odpowiednie arkusze spisowe. Dodatkowym 
+                            usprawnieniem jest opcja generowania kodów kresowych wprost z systemu Streamsoft Prestiż 
+                            i wykorzystanie kolektorów danych do wykonania spisu.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Amortyzacja</h5>
+                          <p className="text-gray-700 leading-relaxed">
+                            Obliczanie odpisów amortyzacyjnych odbywa się w oparciu o składniki środków trwałych. 
+                            Amortyzacja może przebiegać według ustalonej przez użytkownika metody (dostępne metody: 
+                            liniowa, degresywna, jednorazowo). Prostą weryfikację skuteczności wybranej metody 
+                            zapewniają plany i prognozy z perspektywą na kolejne lata.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Wydruki i zestawienia</h5>
+                          <p className="text-gray-700 leading-relaxed">
+                            W module dostępny jest szeroki katalog dokumentów z zakresu analizy środków trwałych: 
+                            standardowe tabele amortyzacyjne w ujęciu bilansowanym, dokumenty dotyczące m.in. przyjęcia 
+                            i likwidacji, zmiany miejsca użytkowania, zmiany danych oraz raporty i wydruki definiowane 
+                            tworzone wg potrzeb użytkownika.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
