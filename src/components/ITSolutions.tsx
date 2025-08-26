@@ -28,13 +28,16 @@ import {
   HardDrive,
   Monitor,
   ChevronRight,
-  Calendar
+  Calendar,
+  Factory,
+  ArrowLeft
 } from 'lucide-react';
 
 const ITSolutions: React.FC = () => {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null);
   const [selectedSubSolution, setSelectedSubSolution] = useState<string | null>(null);
   const [showFixedAssetsDetails, setShowFixedAssetsDetails] = useState(false);
+  const [showProductionDetails, setShowProductionDetails] = useState(false);
 
   const streamsoftModules = [
     { name: 'Zarządzanie Produkcją', icon: Package },
@@ -158,6 +161,42 @@ const ITSolutions: React.FC = () => {
     }
   ];
 
+  const productionDetailsContent = (
+    <section className="py-8 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <button
+          onClick={() => setShowProductionDetails(false)}
+          className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 mb-8"
+        >
+          <ArrowLeft className="h-5 w-5 mr-2" />
+          Powrót do modułów Streamsoft
+        </button>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column: Image */}
+          <div>
+            <img
+              src="/Zarzadzanie-Produkcja-screen-1.png"
+              alt="Zarządzanie produkcją - screen"
+              className="rounded-lg shadow-lg w-full h-auto object-cover"
+            />
+          </div>
+
+          {/* Right Column: Description */}
+          <div className="prose prose-lg max-w-none text-gray-700">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <Factory className="inline-block h-8 w-8 text-orange-600 mr-3" />
+              Zarządzanie produkcją
+            </h2>
+            <p>
+              zarządzanie produkcja opis
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   return (
     <section id="solutions" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,143 +249,151 @@ const ITSolutions: React.FC = () => {
 
             {selectedSolution === 'streamsoft' && (
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <div className="flex items-center mb-6">
-                  <Package className="h-8 w-8 text-blue-600 mr-3" />
-                  <h3 className="text-2xl font-bold text-gray-900">Streamsoft</h3>
-                </div>
-                
-                <div className="mb-8">
-                  <p className="text-lg leading-relaxed text-gray-700 mb-4">
-                    Kompleksowe rozwiązanie informatyczne dla produkcji, handlu i usług – spójność danych, kontrola nad procesami
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    System ERP Streamsoft Prestiż wybrało już ponad 500 firm produkcyjnych, równie chętnie korzystają z niego firmy handlowe oraz usługowe. W rynkowych raportach analitycznych od wielu lat plasujemy się w ścisłej czołówce rozwiązań IT dla średnich przedsiębiorstw.
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    Na pozycję rynkową produkowanego przez Streamsoft rozwiązania wpływa jego funkcjonalność, zapewniająca kompleksową obsługę biznesową. Znaczenie ma także nasza umiejętność dopasowania rozwiązań do indywidualnych wymagań Klienta oraz wiedza o specyfice rynku, podparta wieloletnią praktyką wdrożeniową.
-                  </p>
-                  <p className="text-gray-700">
-                    System jest oferowany również w angielskiej wersji językowej, co zapewnia możliwość optymalizacji procesów w międzynarodowym środowisku pracy.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                  {streamsoftModules.map((module, index) => (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        if (module.id === 'fixed-assets') {
-                          setShowFixedAssetsDetails(true);
-                        }
-                      }}
-                      className="bg-gray-50 p-4 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all duration-300 cursor-pointer group"
-                    >
-                      <div className="flex flex-col items-center text-center">
-                        <module.icon className="h-6 w-6 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
-                          {module.name}
-                        </span>
-                      </div>
+                {showProductionDetails ? (
+                  productionDetailsContent
+                ) : (
+                  <>
+                    <div className="flex items-center mb-6">
+                      <Package className="h-8 w-8 text-blue-600 mr-3" />
+                      <h3 className="text-2xl font-bold text-gray-900">Streamsoft</h3>
                     </div>
-                  ))}
-                </div>
-
-                {showFixedAssetsDetails && (
-                  <div className="mt-8 bg-gray-50 rounded-lg p-8">
-                    <button
-                      onClick={() => {
-                        setShowFixedAssetsDetails(false);
-                        setSelectedSubSolution(null);
-                      }}
-                      className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 mb-8"
-                    >
-                      <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
-                      Powrót do modułów Streamsoft
-                    </button>
-
-                    <div className="flex items-center mb-8">
-                      <Building className="h-8 w-8 text-blue-600 mr-3" />
-                      <h4 className="text-2xl font-bold text-gray-900">Moduł Środki Trwałe</h4>
+                    
+                    <div className="mb-8">
+                      <p className="text-lg leading-relaxed text-gray-700 mb-4">
+                        Kompleksowe rozwiązanie informatyczne dla produkcji, handlu i usług – spójność danych, kontrola nad procesami
+                      </p>
+                      <p className="text-gray-700 mb-4">
+                        System ERP Streamsoft Prestiż wybrało już ponad 500 firm produkcyjnych, równie chętnie korzystają z niego firmy handlowe oraz usługowe. W rynkowych raportach analitycznych od wielu lat plasujemy się w ścisłej czołówce rozwiązań IT dla średnich przedsiębiorstw.
+                      </p>
+                      <p className="text-gray-700 mb-4">
+                        Na pozycję rynkową produkowanego przez Streamsoft rozwiązania wpływa jego funkcjonalność, zapewniająca kompleksową obsługę biznesową. Znaczenie ma także nasza umiejętność dopasowania rozwiązań do indywidualnych wymagań Klienta oraz wiedza o specyfice rynku, podparta wieloletnią praktyką wdrożeniową.
+                      </p>
+                      <p className="text-gray-700">
+                        System jest oferowany również w angielskiej wersji językowej, co zapewnia możliwość optymalizacji procesów w międzynarodowym środowisku pracy.
+                      </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                      {/* Image Column */}
-                      <div className="flex justify-center">
-                        <img
-                          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                          alt="Środki Trwałe - zarządzanie majątkiem firmy"
-                          className="rounded-lg shadow-lg max-w-full h-auto"
-                        />
-                      </div>
-
-                      {/* Description Column */}
-                      <div className="space-y-6">
-                        <div>
-                          <p className="text-gray-700 leading-relaxed">
-                            Moduł Środki Trwałe Streamsoft Prestiż zapewnia pełną kontrolę nad majątkiem trwałym, 
-                            wartościami niematerialnymi, jak i prawnymi. Oferuje szereg możliwości w zakresie 
-                            zarządzania środkami trwałymi i ich amortyzacji. Można także skorzystać z szerokiego 
-                            katalogu wydruków oraz zestawień dostępnych w module, a gdyby zaszła taka potrzeba - 
-                            definiować własne, zgodnie z bieżącymi potrzebami. Moduł posiada również mechanizm cech, 
-                            czyli opcję pomocną przy wprowadzaniu własnych parametrów środków trwałych.
-                          </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                      {streamsoftModules.map((module, index) => (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            if (module.id === 'fixed-assets') {
+                              setShowFixedAssetsDetails(true);
+                            } else if (module.name === 'Zarządzanie Produkcją') {
+                              setShowProductionDetails(true);
+                            }
+                          }}
+                          className="bg-gray-50 p-4 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                        >
+                          <div className="flex flex-col items-center text-center">
+                            <module.icon className="h-6 w-6 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300" />
+                            <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                              {module.name}
+                            </span>
+                          </div>
                         </div>
-
-                        <div>
-                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Ewidencja środków trwałych</h5>
-                          <p className="text-gray-700 leading-relaxed">
-                            Moduł wspiera procesy ewidencjonowania środków trwałych. Możliwa jest ewidencja na podstawie 
-                            szerokiego katalogu dokumentów: przyjęcia, likwidacji, ulepszenia, zmiany wprowadzonej przez 
-                            użytkownika czy przeszacowania. Sprzyja to budowaniu pełnej historii majątku i pozwala 
-                            użytkownikom modułu prześledzić kompletną ścieżkę danego środka trwałego, od chwili jego 
-                            przyjęcia w firmie. Wgląd w aktualne dane jest intuicyjny, historię majątku trwałego można 
-                            wywołać na kliknięcie – szybko i sprawnie.
-                          </p>
-                        </div>
-
-                        <div>
-                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Kastomizacja parametrów</h5>
-                          <p className="text-gray-700 leading-relaxed">
-                            Moduł umożliwia szybkie filtrowanie oraz tworzenie autorskich parametrów dla różnych kategorii 
-                            środków trwałych, np. przegląd sprzętu komputerowego, numer atestu urządzeń czy data przeglądu 
-                            floty samochodowej. Moduł jest pod tym względem uniwersalny i posiada szeroki zakres funkcji. 
-                            Dlatego zaspokaja potrzeby kadry zarządzającej, która oczekuje dostępu do różnorodnych 
-                            informacji o posiadanym majątku trwałym.
-                          </p>
-                        </div>
-
-                        <div>
-                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Inwentaryzacja</h5>
-                          <p className="text-gray-700 leading-relaxed">
-                            W module Środki Trwałe inwentaryzację można przeprowadzić zgodnie z wyodrębnionymi w firmie 
-                            polami spisowymi, szybko i sprawnie generując odpowiednie arkusze spisowe. Dodatkowym 
-                            usprawnieniem jest opcja generowania kodów kresowych wprost z systemu Streamsoft Prestiż 
-                            i wykorzystanie kolektorów danych do wykonania spisu.
-                          </p>
-                        </div>
-
-                        <div>
-                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Amortyzacja</h5>
-                          <p className="text-gray-700 leading-relaxed">
-                            Obliczanie odpisów amortyzacyjnych odbywa się w oparciu o składniki środków trwałych. 
-                            Amortyzacja może przebiegać według ustalonej przez użytkownika metody (dostępne metody: 
-                            liniowa, degresywna, jednorazowo). Prostą weryfikację skuteczności wybranej metody 
-                            zapewniają plany i prognozy z perspektywą na kolejne lata.
-                          </p>
-                        </div>
-
-                        <div>
-                          <h5 className="text-xl font-semibold text-gray-900 mb-3">Wydruki i zestawienia</h5>
-                          <p className="text-gray-700 leading-relaxed">
-                            W module dostępny jest szeroki katalog dokumentów z zakresu analizy środków trwałych: 
-                            standardowe tabele amortyzacyjne w ujęciu bilansowanym, dokumenty dotyczące m.in. przyjęcia 
-                            i likwidacji, zmiany miejsca użytkowania, zmiany danych oraz raporty i wydruki definiowane 
-                            tworzone wg potrzeb użytkownika.
-                          </p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  </div>
+
+                    {showFixedAssetsDetails && (
+                      <div className="mt-8 bg-gray-50 rounded-lg p-8">
+                        <button
+                          onClick={() => {
+                            setShowFixedAssetsDetails(false);
+                            setSelectedSubSolution(null);
+                          }}
+                          className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 mb-8"
+                        >
+                          <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
+                          Powrót do modułów Streamsoft
+                        </button>
+
+                        <div className="flex items-center mb-8">
+                          <Building className="h-8 w-8 text-blue-600 mr-3" />
+                          <h4 className="text-2xl font-bold text-gray-900">Moduł Środki Trwałe</h4>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                          {/* Image Column */}
+                          <div className="flex justify-center">
+                            <img
+                              src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                              alt="Środki Trwałe - zarządzanie majątkiem firmy"
+                              className="rounded-lg shadow-lg max-w-full h-auto"
+                            />
+                          </div>
+
+                          {/* Description Column */}
+                          <div className="space-y-6">
+                            <div>
+                              <p className="text-gray-700 leading-relaxed">
+                                Moduł Środki Trwałe Streamsoft Prestiż zapewnia pełną kontrolę nad majątkiem trwałym, 
+                                wartościami niematerialnymi, jak i prawnymi. Oferuje szereg możliwości w zakresie 
+                                zarządzania środkami trwałymi i ich amortyzacji. Można także skorzystać z szerokiego 
+                                katalogu wydruków oraz zestawień dostępnych w module, a gdyby zaszła taka potrzeba - 
+                                definiować własne, zgodnie z bieżącymi potrzebami. Moduł posiada również mechanizm cech, 
+                                czyli opcję pomocną przy wprowadzaniu własnych parametrów środków trwałych.
+                              </p>
+                            </div>
+
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-3">Ewidencja środków trwałych</h5>
+                              <p className="text-gray-700 leading-relaxed">
+                                Moduł wspiera procesy ewidencjonowania środków trwałych. Możliwa jest ewidencja na podstawie 
+                                szerokiego katalogu dokumentów: przyjęcia, likwidacji, ulepszenia, zmiany wprowadzonej przez 
+                                użytkownika czy przeszacowania. Sprzyja to budowaniu pełnej historii majątku i pozwala 
+                                użytkownikom modułu prześledzić kompletną ścieżkę danego środka trwałego, od chwili jego 
+                                przyjęcia w firmie. Wgląd w aktualne dane jest intuicyjny, historię majątku trwałego można 
+                                wywołać na kliknięcie – szybko i sprawnie.
+                              </p>
+                            </div>
+
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-3">Kastomizacja parametrów</h5>
+                              <p className="text-gray-700 leading-relaxed">
+                                Moduł umożliwia szybkie filtrowanie oraz tworzenie autorskich parametrów dla różnych kategorii 
+                                środków trwałych, np. przegląd sprzętu komputerowego, numer atestu urządzeń czy data przeglądu 
+                                floty samochodowej. Moduł jest pod tym względem uniwersalny i posiada szeroki zakres funkcji. 
+                                Dlatego zaspokaja potrzeby kadry zarządzającej, która oczekuje dostępu do różnorodnych 
+                                informacji o posiadanym majątku trwałym.
+                              </p>
+                            </div>
+
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-3">Inwentaryzacja</h5>
+                              <p className="text-gray-700 leading-relaxed">
+                                W module Środki Trwałe inwentaryzację można przeprowadzić zgodnie z wyodrębnionymi w firmie 
+                                polami spisowymi, szybko i sprawnie generując odpowiednie arkusze spisowe. Dodatkowym 
+                                usprawnieniem jest opcja generowania kodów kresowych wprost z systemu Streamsoft Prestiż 
+                                i wykorzystanie kolektorów danych do wykonania spisu.
+                              </p>
+                            </div>
+
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-3">Amortyzacja</h5>
+                              <p className="text-gray-700 leading-relaxed">
+                                Obliczanie odpisów amortyzacyjnych odbywa się w oparciu o składniki środków trwałych. 
+                                Amortyzacja może przebiegać według ustalonej przez użytkownika metody (dostępne metody: 
+                                liniowa, degresywna, jednorazowo). Prostą weryfikację skuteczności wybranej metody 
+                                zapewniają plany i prognozy z perspektywą na kolejne lata.
+                              </p>
+                            </div>
+
+                            <div>
+                              <h5 className="text-xl font-semibold text-gray-900 mb-3">Wydruki i zestawienia</h5>
+                              <p className="text-gray-700 leading-relaxed">
+                                W module dostępny jest szeroki katalog dokumentów z zakresu analizy środków trwałych: 
+                                standardowe tabele amortyzacyjne w ujęciu bilansowanym, dokumenty dotyczące m.in. przyjęcia 
+                                i likwidacji, zmiany miejsca użytkowania, zmiany danych oraz raporty i wydruki definiowane 
+                                tworzone wg potrzeb użytkownika.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}
