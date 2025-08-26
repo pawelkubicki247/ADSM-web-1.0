@@ -485,34 +485,34 @@ const ITSolutions: React.FC = () => {
           </p>
         </div>
 
-        {!selectedSolution ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution) => (
-              <div
-                key={solution.id}
-                onClick={() => setSelectedSolution(solution.id)}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group border border-gray-200 hover:border-blue-300"
-              >
-                <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-lg mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-                  <solution.icon className="h-8 w-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                  {solution.title}
-                </h3>
-                <p className="text-gray-600 mb-6">{solution.description}</p>
-                <ul className="space-y-2">
-                  {solution.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-sm text-gray-600">
-                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((solution) => (
+            <div
+              key={solution.id}
+              onClick={() => setSelectedSolution(solution.id)}
+              className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer group border border-gray-200 hover:border-blue-300"
+            >
+              <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-lg mb-6 group-hover:bg-blue-200 transition-colors duration-300">
+                <solution.icon className="h-8 w-8 text-blue-600" />
               </div>
-            ))}
-          </div>
-        ) : (
-          <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                {solution.title}
+              </h3>
+              <p className="text-gray-600 mb-6">{solution.description}</p>
+              <ul className="space-y-2">
+                {solution.features.map((feature, index) => (
+                  <li key={index} className="flex items-center text-sm text-gray-600">
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {selectedSolution && (
+          <div className="mt-12">
             <button
               onClick={() => {
                 setSelectedSolution(null);
