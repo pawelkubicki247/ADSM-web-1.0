@@ -235,6 +235,7 @@ const ITSolutions: React.FC = () => {
           description: 'Zarządzanie należnościami i zobowiązaniami',
           screenColor: 'bg-red-100',
           screenIcon: DollarSign,
+                     screenImage: '/screens/Rozrachunki-screen.png',
           details: [
             'Kartoteki kontrahentów',
             'Terminy płatności i windykacja',
