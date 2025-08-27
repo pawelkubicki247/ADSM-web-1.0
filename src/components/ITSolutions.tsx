@@ -73,39 +73,45 @@ const ITSolutions: React.FC = () => {
       icon: Package,
       sections: [
         {
-          title: 'Dashboard produkcji',
-          description: 'Centralny panel kontrolny dla całego procesu produkcyjnego',
+          title: 'Dashboard produkcji - Efektywność maszyn',
+          description: 'Monitoring wydajności i stanu technicznego linii produkcyjnych',
           screenColor: 'bg-blue-100',
-          screenIcon: Monitor,
+          screenIcon: PieChart,
+          screenImage: '/screens/production-dashboard.png',
           details: [
-            'Przegląd aktualnych zleceń produkcyjnych',
-            'Monitoring postępu realizacji',
-            'Alerty o opóźnieniach i problemach',
-            'Wykorzystanie mocy produkcyjnych w czasie rzeczywistym'
+            'Wykresy efektywności maszyn w czasie rzeczywistym (zmiana, dzień, średnia tygodnia)',
+            'Lista zgłoszonych awarii z czasem trwania i przyczyną przestoju',
+            'Meldunek nierozliczonych operacji z podziałem na kategorie',
+            'Alerty produkcyjne i opóźnione zlecenia',
+            'Wiekowanie nierozliczonych meldunków z wykresami trendu'
           ]
         },
         {
-          title: 'Planowanie produkcji',
-          description: 'Zaawansowane narzędzia do planowania i harmonogramowania',
+          title: 'Planowanie produkcji - Wykres Gantta',
+          description: 'Wizualne planowanie i harmonogramowanie operacji produkcyjnych',
           screenColor: 'bg-green-100',
-          screenIcon: Calendar,
+          screenIcon: BarChart3,
+          screenImage: '/screens/production-gantt.png',
           details: [
-            'Automatyczne planowanie zleceń',
-            'Optymalizacja wykorzystania zasobów',
-            'Zarządzanie kolejnością produkcji',
-            'Przewidywanie terminów realizacji'
+            'Wykres Gantta z operacjami technologicznymi na osi czasu',
+            'Sterownie planowane operacji z podziałem na kompetencje',
+            'Koszty planowanych operacji i analiza rentowności',
+            'Automatyczne wykrywanie kolizji w harmonogramie',
+            'Optymalizacja wykorzystania zasobów produkcyjnych'
           ]
         },
         {
-          title: 'Kontrola jakości',
-          description: 'System zarządzania jakością produktów',
+          title: 'Harmonogram produkcji',
+          description: 'Szczegółowe planowanie zleceń produkcyjnych z kalendarzem',
           screenColor: 'bg-purple-100',
-          screenIcon: Shield,
+          screenIcon: Calendar,
+          screenImage: '/screens/production-schedule.png',
           details: [
-            'Protokoły kontroli jakości',
-            'Śledzenie parametrów produkcji',
-            'Zarządzanie certyfikatami',
-            'Analiza trendów jakościowych'
+            'Wykres Gantta z szczegółowymi informacjami o zleceniach (Wtrysek 4100)',
+            'Data rozpoczęcia i zakończenia każdej operacji',
+            'Postęp realizacji z informacją o czasie i pozostałych godzinach',
+            'Integracja z kalendarzem produkcyjnym',
+            'Możliwość przesuwania zadań z automatycznym przeliczeniem terminów'
           ]
         }
       ]
