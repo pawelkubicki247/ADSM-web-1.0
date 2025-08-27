@@ -76,7 +76,7 @@ const ITSolutions: React.FC = () => {
           title: 'Dashboard produkcji - Efektywność maszyn',
           description: 'Monitoring wydajności i stanu technicznego linii produkcyjnych',
           screenColor: 'bg-blue-100',
-          screenIcon: PieChart,
+         // screenIcon: PieChart,
           screenImage: '/public/screens/Zarzadzanie-Produkcja-screen-1.png',
           details: [
             'Wykresy efektywności maszyn w czasie rzeczywistym (zmiana, dzień, średnia tygodnia)',
