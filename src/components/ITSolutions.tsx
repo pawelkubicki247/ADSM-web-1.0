@@ -91,7 +91,7 @@ const ITSolutions: React.FC = () => {
           description: 'Wizualne planowanie i harmonogramowanie operacji produkcyjnych',
           screenColor: 'bg-green-100',
           screenIcon: BarChart3,
-          screenImage: '/screens/production-gantt.png',
+          screenImage: '/screens/Zarzadzanie-Produkcja-screen-3.png',
           details: [
             'Wykres Gantta z operacjami technologicznymi na osi czasu',
             'Sterownie planowane operacji z podziałem na kompetencje',
