@@ -77,7 +77,7 @@ const ITSolutions: React.FC = () => {
           description: 'Monitoring wydajności i stanu technicznego linii produkcyjnych',
           screenColor: 'bg-blue-100',
           screenIcon: PieChart,
-          screenImage: '/screens/production-dashboard.png',
+          screenImage: '/public/production-dashboard.png',
           details: [
             'Wykresy efektywności maszyn w czasie rzeczywistym (zmiana, dzień, średnia tygodnia)',
             'Lista zgłoszonych awarii z czasem trwania i przyczyną przestoju',
