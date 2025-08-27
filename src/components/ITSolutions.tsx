@@ -91,7 +91,7 @@ const ITSolutions: React.FC = () => {
           description: 'Wizualne planowanie i harmonogramowanie operacji produkcyjnych',
           screenColor: 'bg-green-100',
           screenIcon: BarChart3,
-          screenImage: '/screens/Zarzadzanie-Produkcja-screen-3.png',
+          screenImage: '/screens/Zarzadzanie-Produkcja-screen-2.png',
           details: [
             'Wykres Gantta z operacjami technologicznymi na osi czasu',
             'Sterownie planowane operacji z podziałem na kompetencje',
@@ -105,9 +105,9 @@ const ITSolutions: React.FC = () => {
           description: 'Szczegółowe planowanie zleceń produkcyjnych z kalendarzem',
           screenColor: 'bg-purple-100',
           screenIcon: Calendar,
-          screenImage: '/screens/Zarzadzanie-Produkcja-screen-2.png',
+          screenImage: '/screens/Zarzadzanie-Produkcja-screen-3.png',
           details: [
-            'Wykres Gantta z szczegółowymi informacjami o zleceniach (Wtrysek 4100)',
+            'Wykres Gantta z szczegółowymi informacjami o zleceniach (Wtrysk 4100)',
             'Data rozpoczęcia i zakończenia każdej operacji',
             'Postęp realizacji z informacją o czasie i pozostałych godzinach',
             'Integracja z kalendarzem produkcyjnym',
@@ -125,6 +125,7 @@ const ITSolutions: React.FC = () => {
           description: 'Kompleksowe zarządzanie procesami sprzedażowymi',
           screenColor: 'bg-orange-100',
           screenIcon: TrendingUp,
+          screenImage: '/screens/Handlowo-Magazynowy-screen.png',
           details: [
             'Obsługa zamówień klientów',
             'Generowanie ofert i faktur',
@@ -209,6 +210,7 @@ const ITSolutions: React.FC = () => {
           description: 'Pełna ewidencja księgowa zgodna z polskimi standardami',
           screenColor: 'bg-blue-100',
           screenIcon: Calculator,
+          screenImage: '/screens/Handlowo-Magazynowy-screen.png',
           details: [
             'Automatyczne księgowania z innych modułów',
             'Plan kont dostosowany do specyfiki firmy',
