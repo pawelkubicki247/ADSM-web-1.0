@@ -254,6 +254,7 @@ const ITSolutions: React.FC = () => {
           description: 'Kompleksowa baza danych kadrowych',
           screenColor: 'bg-green-100',
           screenIcon: Users,
+          screenImage: '/screens/Kadryi-Place-screen.png',
           details: [
             'Teczki personalne pracowników',
             'Umowy i aneksy',
@@ -266,6 +267,7 @@ const ITSolutions: React.FC = () => {
           description: 'Automatyczne naliczanie wynagrodzeń',
           screenColor: 'bg-blue-100',
           screenIcon: Calculator,
+
           details: [
             'Różne systemy wynagradzania',
             'Automatyczne naliczanie składek',
@@ -278,6 +280,7 @@ const ITSolutions: React.FC = () => {
           description: 'Rejestracja i rozliczanie czasu pracy',
           screenColor: 'bg-yellow-100',
           screenIcon: Clock,
+                    screenImage: '/screens/Kadry-i-Place-Panel-Kierownika-screen.png',
           details: [
             'Karty czasu pracy',
             'Ewidencja nieobecności',
@@ -296,6 +299,7 @@ const ITSolutions: React.FC = () => {
           description: 'Optymalizacja tras i wykorzystania floty',
           screenColor: 'bg-blue-100',
           screenIcon: Truck,
+           screenImage: '/screens/Logistyka-screen.png',
           details: [
             'Planowanie tras dostawowych',
             'Optymalizacja wykorzystania pojazdów',
@@ -308,6 +312,7 @@ const ITSolutions: React.FC = () => {
           description: 'Monitoring statusu dostaw w czasie rzeczywistym',
           screenColor: 'bg-green-100',
           screenIcon: Monitor,
+          screenImage: '/screens/Kurier-screen.png', 
           details: [
             'Lokalizacja pojazdów GPS',
             'Status realizacji dostaw',
