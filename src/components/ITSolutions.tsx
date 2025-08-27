@@ -105,7 +105,7 @@ const ITSolutions: React.FC = () => {
           description: 'Szczegółowe planowanie zleceń produkcyjnych z kalendarzem',
           screenColor: 'bg-purple-100',
           screenIcon: Calendar,
-          screenImage: '/screens/production-schedule.png',
+          screenImage: '/screens/Zarzadzanie-Produkcja-screen-2.png',
           details: [
             'Wykres Gantta z szczegółowymi informacjami o zleceniach (Wtrysek 4100)',
             'Data rozpoczęcia i zakończenia każdej operacji',
