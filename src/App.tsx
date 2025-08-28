@@ -24,7 +24,7 @@ function App() {
         return <References />;
       case 'case-study':
         return <CaseStudy />;
-        8}
+        *}
       case 'contact':
         return <Contact />;
       case 'book-meeting':
