@@ -12,8 +12,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
   const menuItems = [
     { id: 'about', label: 'O nas' },
     { id: 'solutions', label: 'Rozwiązania IT' },
-    { id: 'references', label: 'Referencje' },
-    { id: 'case-study', label: 'Case study' },
+/*    { id: 'references', label: 'Referencje' }, */
+/*    { id: 'case-study', label: 'Case study' }, */
     { id: 'contact', label: 'Kontakt' },
     { id: 'book-meeting', label: 'Umów spotkanie' },
     { id: 'remote-help', label: 'Pomoc zdalna' }
