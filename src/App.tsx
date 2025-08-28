@@ -3,8 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import ITSolutions from './components/ITSolutions';
-import References from './components/References';
-import CaseStudy from './components/CaseStudy';
+
 import Contact from './components/Contact';
 import BookMeeting from './components/BookMeeting';
 import RemoteHelp from './components/RemoteHelp';
@@ -20,10 +19,7 @@ function App() {
       case 'solutions':
         return <ITSolutions />;
       case 'references':
-        return <References />;
-      case 'case-study':
-        return <CaseStudy />;
-      case 'contact':
+     
         return <Contact />;
       case 'book-meeting':
         return <BookMeeting />;
