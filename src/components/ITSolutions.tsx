@@ -28,39 +28,299 @@ import {
   HardDrive,
   Monitor,
   ChevronRight,
-  Calendar
+  Calendar,
+  TrendingUp,
+  Clock,
+  AlertCircle
 } from 'lucide-react';
 
 const ITSolutions: React.FC = () => {
   const [selectedSolution, setSelectedSolution] = useState<string | null>(null);
   const [selectedSubSolution, setSelectedSubSolution] = useState<string | null>(null);
+  const [selectedModule, setSelectedModule] = useState<string | null>(null);
 
   const streamsoftModules = [
-    { name: 'Zarządzanie Produkcją', icon: Package },
-    { name: 'Handlowo-Magazynowy', icon: ShoppingCart },
-    { name: 'CRM', icon: Users },
-    { name: 'Finanse i Księgowość', icon: Calculator },
-    { name: 'Kadry i Płace', icon: UserCheck },
-    { name: 'Logistyka', icon: Truck },
-    { name: 'DMS', icon: Database },
-    { name: 'Rozrachunki', icon: DollarSign },
-    { name: 'Środki Trwałe', icon: Building },
-    { name: 'Wyposażenie', icon: Box },
-    { name: 'Serwis', icon: Wrench },
-    { name: 'Raporty i Formularze', icon: FileText },
-    { name: 'Księga Podatkowa', icon: BookOpen },
-    { name: 'Produkt', icon: Package },
-    { name: 'Administrator', icon: Settings },
-    { name: 'Wspólne', icon: Globe },
-    { name: 'Business Intelligence', icon: BarChart3 },
-    { name: 'PIVOT', icon: PieChart },
-    { name: 'Magazyn Mobilny', icon: Smartphone },
-    { name: 'Panel Pracownika', icon: User },
-    { name: 'B2B', icon: ShoppingBag },
-    { name: 'Kurier', icon: Mail },
-    { name: 'Windykator', icon: DollarSign },
-    { name: 'Serwis', icon: Shield }
+    { name: 'Zarządzanie Produkcją', icon: Package, id: 'production' },
+    { name: 'Handlowo-Magazynowy', icon: ShoppingCart, id: 'trade-warehouse' },
+    { name: 'CRM', icon: Users, id: 'crm' },
+    { name: 'Finanse i Księgowość', icon: Calculator, id: 'finance' },
+    { name: 'Kadry i Płace', icon: UserCheck, id: 'hr' },
+    { name: 'Logistyka', icon: Truck, id: 'logistics' },
+    { name: 'DMS', icon: Database, id: 'dms' },
+    { name: 'Rozrachunki', icon: DollarSign, id: 'settlements' },
+    { name: 'Środki Trwałe', icon: Building, id: 'fixed-assets' },
+    { name: 'Wyposażenie', icon: Box, id: 'equipment' },
+    { name: 'Serwis', icon: Wrench, id: 'service' },
+    { name: 'Raporty i Formularze', icon: FileText, id: 'reports' },
+    { name: 'Księga Podatkowa', icon: BookOpen, id: 'tax-book' },
+    { name: 'Produkt', icon: Package, id: 'product' },
+    { name: 'Administrator', icon: Settings, id: 'admin' },
+    { name: 'Wspólne', icon: Globe, id: 'common' },
+    { name: 'Business Intelligence', icon: BarChart3, id: 'bi' },
+    { name: 'PIVOT', icon: PieChart, id: 'pivot' },
+    { name: 'Magazyn Mobilny', icon: Smartphone, id: 'mobile-warehouse' },
+    { name: 'Panel Pracownika', icon: User, id: 'employee-panel' },
+    { name: 'B2B', icon: ShoppingBag, id: 'b2b' },
+    { name: 'Kurier', icon: Mail, id: 'courier' },
+    { name: 'Windykator', icon: DollarSign, id: 'debt-collector' },
+    { name: 'Serwis', icon: Shield, id: 'service-2' }
   ];
+
+  // Definicje szczegółów modułów
+  const moduleDetails = {
+    'production': {
+      title: 'Zarządzanie Produkcją',
+      icon: Package,
+      sections: [
+        {
+          title: 'Dashboard produkcji',
+          description: 'Centralny panel kontrolny dla całego procesu produkcyjnego',
+          screenColor: 'bg-blue-100',
+          screenIcon: Monitor,
+          details: [
+            'Przegląd aktualnych zleceń produkcyjnych',
+            'Monitoring postępu realizacji',
+            'Alerty o opóźnieniach i problemach',
+            'Wykorzystanie mocy produkcyjnych w czasie rzeczywistym'
+          ]
+        },
+        {
+          title: 'Planowanie produkcji',
+          description: 'Zaawansowane narzędzia do planowania i harmonogramowania',
+          screenColor: 'bg-green-100',
+          screenIcon: Calendar,
+          details: [
+            'Automatyczne planowanie zleceń',
+            'Optymalizacja wykorzystania zasobów',
+            'Zarządzanie kolejnością produkcji',
+            'Przewidywanie terminów realizacji'
+          ]
+        },
+        {
+          title: 'Kontrola jakości',
+          description: 'System zarządzania jakością produktów',
+          screenColor: 'bg-purple-100',
+          screenIcon: Shield,
+          details: [
+            'Protokoły kontroli jakości',
+            'Śledzenie parametrów produkcji',
+            'Zarządzanie certyfikatami',
+            'Analiza trendów jakościowych'
+          ]
+        }
+      ]
+    },
+    'trade-warehouse': {
+      title: 'Handlowo-Magazynowy',
+      icon: ShoppingCart,
+      sections: [
+        {
+          title: 'Panel sprzedaży',
+          description: 'Kompleksowe zarządzanie procesami sprzedażowymi',
+          screenColor: 'bg-orange-100',
+          screenIcon: TrendingUp,
+          details: [
+            'Obsługa zamówień klientów',
+            'Generowanie ofert i faktur',
+            'Śledzenie statusu realizacji',
+            'Analiza wyników sprzedaży'
+          ]
+        },
+        {
+          title: 'Magazyn centralny',
+          description: 'Zarządzanie stanem magazynowym i lokalizacjami',
+          screenColor: 'bg-teal-100',
+          screenIcon: Database,
+          details: [
+            'Stan magazynowy w czasie rzeczywistym',
+            'Lokalizacje i przemieszczenia towarów',
+            'Automatyczne uzupełnianie stanów',
+            'Inwentaryzacja i korekty'
+          ]
+        },
+        {
+          title: 'Zakupy i dostawy',
+          description: 'Optymalizacja procesów zakupowych',
+          screenColor: 'bg-indigo-100',
+          screenIcon: Truck,
+          details: [
+            'Zarządzanie dostawcami',
+            'Automatyczne generowanie zamówień',
+            'Śledzenie dostaw i terminów',
+            'Analiza kosztów zakupu'
+          ]
+        }
+      ]
+    },
+    'crm': {
+      title: 'CRM',
+      icon: Users,
+      sections: [
+        {
+          title: 'Baza klientów',
+          description: 'Centralna baza danych wszystkich kontaktów biznesowych',
+          screenColor: 'bg-blue-100',
+          screenIcon: Users,
+          details: [
+            'Pełne profile klientów i kontrahentów',
+            'Historia współpracy i transakcji',
+            'Segmentacja klientów',
+            'Zarządzanie danymi kontaktowymi'
+          ]
+        },
+        {
+          title: 'Opportunities pipeline',
+          description: 'Śledzenie szans sprzedażowych przez cały cykl',
+          screenColor: 'bg-yellow-100',
+          screenIcon: TrendingUp,
+          details: [
+            'Wizualizacja lejka sprzedażowego',
+            'Prognozowanie przychodów',
+            'Automatyzacja procesów sprzedażowych',
+            'Raportowanie efektywności'
+          ]
+        },
+        {
+          title: 'Komunikacja z klientami',
+          description: 'Centralizacja wszystkich form komunikacji',
+          screenColor: 'bg-green-100',
+          screenIcon: Mail,
+          details: [
+            'Historia komunikacji email i telefonicznej',
+            'Automatyczne kampanie marketingowe',
+            'Zarządzanie zadaniami i przypomnieniami',
+            'Integracja z systemami komunikacji'
+          ]
+        }
+      ]
+    },
+    'finance': {
+      title: 'Finanse i Księgowość',
+      icon: Calculator,
+      sections: [
+        {
+          title: 'Księgowość główna',
+          description: 'Pełna ewidencja księgowa zgodna z polskimi standardami',
+          screenColor: 'bg-blue-100',
+          screenIcon: Calculator,
+          details: [
+            'Automatyczne księgowania z innych modułów',
+            'Plan kont dostosowany do specyfiki firmy',
+            'Zamknięcia okresowe i roczne',
+            'Sprawozdania finansowe i bilanse'
+          ]
+        },
+        {
+          title: 'Controlling finansowy',
+          description: 'Analiza i kontrola wyników finansowych',
+          screenColor: 'bg-purple-100',
+          screenIcon: BarChart3,
+          details: [
+            'Centra kosztów i zysku',
+            'Budżetowanie i kontrola budżetu',
+            'Analiza rentowności produktów',
+            'Wskaźniki finansowe i KPI'
+          ]
+        },
+        {
+          title: 'Rozrachunki z kontrahentami',
+          description: 'Zarządzanie należnościami i zobowiązaniami',
+          screenColor: 'bg-red-100',
+          screenIcon: DollarSign,
+          details: [
+            'Kartoteki kontrahentów',
+            'Terminy płatności i windykacja',
+            'Automatyczne ponaglenia',
+            'Analiza wiarygodności płatniczej'
+          ]
+        }
+      ]
+    },
+    'hr': {
+      title: 'Kadry i Płace',
+      icon: UserCheck,
+      sections: [
+        {
+          title: 'Ewidencja pracowników',
+          description: 'Kompleksowa baza danych kadrowych',
+          screenColor: 'bg-green-100',
+          screenIcon: Users,
+          details: [
+            'Teczki personalne pracowników',
+            'Umowy i aneksy',
+            'Certyfikaty i uprawnienia',
+            'Historia zatrudnienia'
+          ]
+        },
+        {
+          title: 'System płacowy',
+          description: 'Automatyczne naliczanie wynagrodzeń',
+          screenColor: 'bg-blue-100',
+          screenIcon: Calculator,
+          details: [
+            'Różne systemy wynagradzania',
+            'Automatyczne naliczanie składek',
+            'Generowanie list płac',
+            'Rozliczenia z ZUS i US'
+          ]
+        },
+        {
+          title: 'Czas pracy',
+          description: 'Rejestracja i rozliczanie czasu pracy',
+          screenColor: 'bg-yellow-100',
+          screenIcon: Clock,
+          details: [
+            'Karty czasu pracy',
+            'Ewidencja nieobecności',
+            'Planowanie urlopów',
+            'Rozliczenia nadgodzin'
+          ]
+        }
+      ]
+    },
+    'logistics': {
+      title: 'Logistyka',
+      icon: Truck,
+      sections: [
+        {
+          title: 'Planowanie transportu',
+          description: 'Optymalizacja tras i wykorzystania floty',
+          screenColor: 'bg-blue-100',
+          screenIcon: Truck,
+          details: [
+            'Planowanie tras dostawowych',
+            'Optymalizacja wykorzystania pojazdów',
+            'Zarządzanie harmonogramem kierowców',
+            'Kalkulacja kosztów transportu'
+          ]
+        },
+        {
+          title: 'Śledzenie przesyłek',
+          description: 'Monitoring statusu dostaw w czasie rzeczywistym',
+          screenColor: 'bg-green-100',
+          screenIcon: Monitor,
+          details: [
+            'Lokalizacja pojazdów GPS',
+            'Status realizacji dostaw',
+            'Powiadomienia o opóźnieniach',
+            'Potwierdzenia odbioru'
+          ]
+        },
+        {
+          title: 'Analiza logistyczna',
+          description: 'Raporty i wskaźniki efektywności',
+          screenColor: 'bg-purple-100',
+          screenIcon: BarChart3,
+          details: [
+            'Koszty transportu na jednostkę',
+            'Efektywność wykorzystania floty',
+            'Punktualność dostaw',
+            'Analiza tras i dystansów'
+          ]
+        }
+      ]
+    }
+  };
 
   const wagonScreens = [
     {
@@ -197,12 +457,12 @@ const ITSolutions: React.FC = () => {
           <div className="space-y-8">
             {/* Back button */}
             <button
-              onClick={() => setSelectedSolution(null)}
-              className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
               onClick={() => {
                 setSelectedSolution(null);
                 setSelectedSubSolution(null);
+                setSelectedModule(null);
               }}
+              className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
             >
               <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
               Powrót do rozwiązań
@@ -214,37 +474,106 @@ const ITSolutions: React.FC = () => {
                   <Package className="h-8 w-8 text-blue-600 mr-3" />
                   <h3 className="text-2xl font-bold text-gray-900">Streamsoft</h3>
                 </div>
-                
-                <div className="mb-8">
-                  <p className="text-lg leading-relaxed text-gray-700 mb-4">
-                    Kompleksowe rozwiązanie informatyczne dla produkcji, handlu i usług – spójność danych, kontrola nad procesami
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    System ERP Streamsoft Prestiż wybrało już ponad 500 firm produkcyjnych, równie chętnie korzystają z niego firmy handlowe oraz usługowe. W rynkowych raportach analitycznych od wielu lat plasujemy się w ścisłej czołówce rozwiązań IT dla średnich przedsiębiorstw.
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    Na pozycję rynkową produkowanego przez Streamsoft rozwiązania wpływa jego funkcjonalność, zapewniająca kompleksową obsługę biznesową. Znaczenie ma także nasza umiejętność dopasowania rozwiązań do indywidualnych wymagań Klienta oraz wiedza o specyfice rynku, podparta wieloletnią praktyką wdrożeniową.
-                  </p>
-                  <p className="text-gray-700">
-                    System jest oferowany również w angielskiej wersji językowej, co zapewnia możliwość optymalizacji procesów w międzynarodowym środowisku pracy.
-                  </p>
-                </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                  {streamsoftModules.map((module, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-50 p-4 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all duration-300 cursor-pointer group"
-                    >
-                      <div className="flex flex-col items-center text-center">
-                        <module.icon className="h-6 w-6 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300" />
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
-                          {module.name}
-                        </span>
-                      </div>
+                {!selectedModule ? (
+                  <>
+                    <div className="mb-8">
+                      <p className="text-lg leading-relaxed text-gray-700 mb-4">
+                        Kompleksowe rozwiązanie informatyczne dla produkcji, handlu i usług – spójność danych, kontrola nad procesami
+                      </p>
+                      <p className="text-gray-700 mb-4">
+                        System ERP Streamsoft Prestiż wybrało już ponad 500 firm produkcyjnych, równie chętnie korzystają z niego firmy handlowe oraz usługowe. W rynkowych raportach analitycznych od wielu lat plasujemy się w ścisłej czołówce rozwiązań IT dla średnich przedsiębiorstw.
+                      </p>
+                      <p className="text-gray-700 mb-4">
+                        Na pozycję rynkową produkowanego przez Streamsoft rozwiązania wpływa jego funkcjonalność, zapewniająca kompleksową obsługę biznesową. Znaczenie ma także nasza umiejętność dopasowania rozwiązań do indywidualnych wymagań Klienta oraz wiedza o specyfice rynku, podparta wieloletnią praktyką wdrożeniową.
+                      </p>
+                      <p className="text-gray-700">
+                        System jest oferowany również w angielskiej wersji językowej, co zapewnia możliwość optymalizacji procesów w międzynarodowym środowisku pracy.
+                      </p>
                     </div>
-                  ))}
-                </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                      {streamsoftModules.map((module, index) => (
+                        <div
+                          key={index}
+                          onClick={() => setSelectedModule(module.id)}
+                          className="bg-gray-50 p-4 rounded-lg hover:bg-blue-50 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                        >
+                          <div className="flex flex-col items-center text-center">
+                            <module.icon className="h-6 w-6 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300" />
+                            <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                              {module.name}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  /* Selected module details */
+                  <div className="space-y-8">
+                    {/* Back button to modules */}
+                    <button
+                      onClick={() => setSelectedModule(null)}
+                      className="flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
+                    >
+                      <ChevronRight className="h-5 w-5 mr-2 rotate-180" />
+                      Powrót do modułów Streamsoft
+                    </button>
+
+                    {moduleDetails[selectedModule] && (
+                      <div>
+                        <div className="flex items-center mb-8">
+                          {React.createElement(moduleDetails[selectedModule].icon, {
+                            className: "h-8 w-8 text-blue-600 mr-3"
+                          })}
+                          <h4 className="text-2xl font-bold text-gray-900">
+                            {moduleDetails[selectedModule].title}
+                          </h4>
+                        </div>
+                        
+                        <div className="space-y-12">
+                          {moduleDetails[selectedModule].sections.map((section, index) => (
+                            <div key={index} className="grid md:grid-cols-2 gap-8 items-center">
+                              <div className={`${section.screenColor} rounded-lg p-8 h-64 flex items-center justify-center`}>
+                                <div className="text-center">
+                                  {React.createElement(section.screenIcon, {
+                                    className: "h-16 w-16 text-blue-800 mx-auto mb-4"
+                                  })}
+                                  <p className="text-blue-900 font-semibold">{section.title}</p>
+                                </div>
+                              </div>
+                              <div>
+                                <h5 className="text-xl font-semibold text-gray-900 mb-4">{section.title}</h5>
+                                <p className="text-gray-700 mb-4">{section.description}</p>
+                                <ul className="space-y-2 text-gray-600">
+                                  {section.details.map((detail, detailIndex) => (
+                                    <li key={detailIndex} className="flex items-start">
+                                      <span className="text-blue-500 mr-2">•</span>
+                                      <span>{detail}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {!moduleDetails[selectedModule] && (
+                      <div className="text-center py-16">
+                        <AlertCircle className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                        <h4 className="text-xl font-semibold text-gray-700 mb-2">
+                          Szczegóły tego modułu będą wkrótce dostępne
+                        </h4>
+                        <p className="text-gray-600">
+                          Pracujemy nad przygotowaniem szczegółowych informacji o tym module.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 
@@ -620,68 +949,6 @@ const ITSolutions: React.FC = () => {
                               </ul>
                             </div>
                           </div>
-
-                          {/* Example 2 */}
-                          <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="bg-yellow-100 rounded-lg p-8 h-64 flex items-center justify-center">
-                              <div className="text-center">
-                                <BarChart3 className="h-16 w-16 text-yellow-600 mx-auto mb-4" />
-                                <p className="text-yellow-800 font-semibold">Monitoring zasobów</p>
-                              </div>
-                            </div>
-                            <div>
-                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Wykorzystanie CPU, RAM i dysku</h5>
-                              <p className="text-gray-700 mb-4">
-                                Szczegółowe monitorowanie wykorzystania zasobów systemowych w czasie rzeczywistym. 
-                                System automatycznie ostrzega o przekroczeniu limitów i optymalizuje alokację zasobów.
-                              </p>
-                              <ul className="space-y-2 text-gray-600">
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Monitoring CPU, RAM i przestrzeni dyskowej</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Alerty o przekroczeniu limitów zasobów</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Automatyczna optymalizacja wydajności</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          {/* Example 3 */}
-                          <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="bg-pink-100 rounded-lg p-8 h-64 flex items-center justify-center">
-                              <div className="text-center">
-                                <Shield className="h-16 w-16 text-pink-600 mx-auto mb-4" />
-                                <p className="text-pink-800 font-semibold">Panel backup</p>
-                              </div>
-                            </div>
-                            <div>
-                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Automatyczne kopie zapasowe VM</h5>
-                              <p className="text-gray-700 mb-4">
-                                Zaawansowany system tworzenia kopii zapasowych maszyn wirtualnych z możliwością 
-                                harmonogramowania, wersjonowania i szybkiego przywracania danych.
-                              </p>
-                              <ul className="space-y-2 text-gray-600">
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Automatyczne harmonogramowanie backup</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Wersjonowanie i archiwizacja kopii</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-purple-500 mr-2">•</span>
-                                  <span>Szybkie przywracanie całych VM</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     )}
@@ -720,68 +987,6 @@ const ITSolutions: React.FC = () => {
                                 <li className="flex items-start">
                                   <span className="text-cyan-500 mr-2">•</span>
                                   <span>Statystyki wykorzystania przestrzeni</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          {/* Example 2 */}
-                          <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="bg-emerald-100 rounded-lg p-8 h-64 flex items-center justify-center">
-                              <div className="text-center">
-                                <Database className="h-16 w-16 text-emerald-600 mx-auto mb-4" />
-                                <p className="text-emerald-800 font-semibold">Przywracanie danych</p>
-                              </div>
-                            </div>
-                            <div>
-                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Szybkie odzyskiwanie plików</h5>
-                              <p className="text-gray-700 mb-4">
-                                Intuicyjny interfejs umożliwia szybkie wyszukiwanie i przywracanie pojedynczych plików 
-                                lub całych folderów z kopii zapasowych. System wspiera przywracanie do różnych lokalizacji.
-                              </p>
-                              <ul className="space-y-2 text-gray-600">
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Wyszukiwanie plików w kopiach zapasowych</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Przywracanie do oryginalnej lub nowej lokalizacji</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Podgląd zawartości przed przywróceniem</span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          {/* Example 3 */}
-                          <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="bg-violet-100 rounded-lg p-8 h-64 flex items-center justify-center">
-                              <div className="text-center">
-                                <Shield className="h-16 w-16 text-violet-600 mx-auto mb-4" />
-                                <p className="text-violet-800 font-semibold">Ustawienia bezpieczeństwa</p>
-                              </div>
-                            </div>
-                            <div>
-                              <h5 className="text-xl font-semibold text-gray-900 mb-4">Konfiguracja szyfrowania i dostępu</h5>
-                              <p className="text-gray-700 mb-4">
-                                Zaawansowane opcje bezpieczeństwa zapewniają pełną ochronę danych w chmurze. 
-                                System oferuje szyfrowanie end-to-end oraz szczegółowe zarządzanie uprawnieniami dostępu.
-                              </p>
-                              <ul className="space-y-2 text-gray-600">
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Szyfrowanie AES-256 dla wszystkich danych</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Zarządzanie uprawnieniami użytkowników</span>
-                                </li>
-                                <li className="flex items-start">
-                                  <span className="text-cyan-500 mr-2">•</span>
-                                  <span>Logi dostępu i audyt bezpieczeństwa</span>
                                 </li>
                               </ul>
                             </div>
