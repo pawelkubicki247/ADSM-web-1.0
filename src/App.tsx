@@ -3,8 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import ITSolutions from './components/ITSolutions';
-import References from './components/References';
-import CaseStudy from './components/CaseStudy';
+{*import References from './components/References';*}
+{*import CaseStudy from './components/CaseStudy';*}
 import Contact from './components/Contact';
 import BookMeeting from './components/BookMeeting';
 import RemoteHelp from './components/RemoteHelp';
