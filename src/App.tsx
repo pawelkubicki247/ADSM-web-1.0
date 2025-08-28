@@ -19,12 +19,10 @@ function App() {
         return <AboutUs />;
       case 'solutions':
         return <ITSolutions />;
-        {* wylaczone z wyswietlania do czasu poprawy pk. 2025.08.28
       case 'references':
         return <References />;
       case 'case-study':
         return <CaseStudy />;
-        *}
       case 'contact':
         return <Contact />;
       case 'book-meeting':
